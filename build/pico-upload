@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "STTY"
+sudo stty 1200 -F /dev/ttyACM1
+echo "Sleep"
+sleep 6
+echo "COPY"
+cp ./hello_world.uf2 /media/ben/RPI-RP2/
