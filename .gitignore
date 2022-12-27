@@ -1,0 +1,10 @@
+#Ignore build files excpet for elf, uf2, and deploy script
+build/*
+
+!build/*.uf2
+!build/*.elf
+!build/pico-upload
+
+#Ignore the pico-sdk
+pico-sdk/
+pico_sdk_import.cmake
