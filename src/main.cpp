@@ -8,9 +8,9 @@
 #include "hardware.h"
 
 
-//--------------------------------------------------------------------+
-// MACRO CONSTANT TYPEDEF PROTYPES
-//--------------------------------------------------------------------+
+//============================================================
+//  Constants, Globals, and Function Prototypes
+//============================================================
 
 /* Blink pattern
  * - 250 ms  : device not mounted
@@ -23,12 +23,16 @@ enum {
   BLINK_SUSPENDED = 2500
 };
 
-
+//Blink interval for USB status
 static uint32_t blink_interval_ms = BLINK_NOT_MOUNTED;
 
 void hid_task();
 
-//Program entry point
+
+//============================================================
+//  Main function 
+//============================================================
+
 int main() {
   hardware_init();
   tusb_init();
@@ -42,9 +46,10 @@ int main() {
   return 0;
 }
 
-//--------------------------------------------------------------------+
-// Device callbacks
-//--------------------------------------------------------------------+
+
+//============================================================
+//  USB Device Callbacks
+//============================================================
 
 // Invoked when device is mounted
 void tud_mount_cb(void) {
@@ -69,9 +74,10 @@ void tud_resume_cb(void) {
   blink_interval_ms = BLINK_MOUNTED;
 }
 
-//--------------------------------------------------------------------+
-// USB HID
-//--------------------------------------------------------------------+
+
+//============================================================
+//  HID Specific USB functions
+//============================================================
 
 // Every 10ms send a HID Report
 void hid_task(void) {
@@ -117,5 +123,4 @@ void tud_hid_set_report_cb(uint8_t instance, uint8_t report_id, hid_report_type_
   (void) report_type;
   (void) buffer; 
   (void) bufsize;
-
 }
